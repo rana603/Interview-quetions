@@ -1,0 +1,40 @@
+  public static void maximumOccuringElement(int N, int[] A){
+    //write your code here
+    Map<Integer, Integer> hp = new HashMap<Integer,Integer>();
+    for (int i=0;i<N;i++){
+        int key=A[i];
+        if (hp.containsKey(key)){
+            int freq=hp.get(key);
+            freq++;
+            hp.put(key,freq);
+        }else{
+            hp.put(key,1);
+        }
+    }
+    int count=0,res=0;
+    for (Map.Entry<Integer,Integer> val:hp.entrySet()){
+        if (count<val.getValue()){
+            res=val.getKey();
+            count=val.getValue();
+        }
+    }
+    System.out.println(res);
+    
+ }
+  
+  
+  class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        d={}
+        for i in nums:
+            if i in d:
+                d[i]+=1
+            else:
+                d[i]=1
+        maxmvalue=0
+        maxmkey=0
+        for key,values in d.items():
+            if values>maxmvalue:
+                maxmkey=key
+                maxmvalue=values
+        return maxmkey
